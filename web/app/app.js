@@ -16,14 +16,14 @@ stompClient.connect({}, function(frame) {
         var messageDom = document.querySelector(".message");
         var dateString = new Date(resp.time);
         var time = dateString.toDateString()+" | "+ dateString.toLocaleTimeString();
-        messageDom.innerHTML = "<BR><span style='font-size:small; color:dodgerblue; padding: 5px; '>" +time + "</span><span style='color: darkgreen; font-weight: bold; padding:5px;'>"+  resp.message + "</span><BR>"+ messageDom.innerHTML ;
+        messageDom.innerHTML = "<BR><span style='font-size:small; color:dodgerblue; padding: 5px; '>" +time+ " "+ resp.name+ "</span><span style='color: darkgreen; font-weight: bold; padding:5px;'>"+  resp.message + "</span><BR>"+ messageDom.innerHTML ;
     });
 
 });
 
 document.querySelector(".formSend").addEventListener("click",function(event){
     event.preventDefault();
-    var id = Math.floor(Math.random() * 1000000);
+    var id = document.querySelector(".container").getAttribute("data-id");
     stompClient.send("/testApp/notification",{
         priority:9
     }, JSON.stringify({
@@ -32,3 +32,14 @@ document.querySelector(".formSend").addEventListener("click",function(event){
     }));
     document.querySelector("input[name='message']").value='';
 });
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+    }
+    return "";
+}

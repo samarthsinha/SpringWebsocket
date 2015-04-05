@@ -13,7 +13,7 @@
     <title></title>
   </head>
   <body ng-app="chatApp">
-  <div ng-controller="ChatCtrl" class="container">
+  <div ng-controller="ChatCtrl" class="container" data-id="${pageContext.session.id}">
       <form ng-submit="addMessage()" name="messageForm">
           <input type="text" placeholder="Compose a new message..." ng-model="message" name="message"/>
           <div class="info">
