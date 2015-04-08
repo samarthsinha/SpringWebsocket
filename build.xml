@@ -369,8 +369,9 @@
   </target>
   
   <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+  <target name="test" depends="clean,all"/>
 
-  <target name="war" depends="clean,build.modules,build.all.artifacts">
+  <target name="war" depends="clean,all">
       <mkdir dir="${basedir}/dist"/>
       <war basedir="${artifact.output.websockettest:war_exploded}" destfile="${basedir}/dist/ROOT.war" needxmlfile="false"/>
   </target>
