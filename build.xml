@@ -4,7 +4,7 @@
   
   <property file="build.properties"/>
   <!-- Uncomment the following property if no tests compilation is needed -->
-  <!-- 
+  <!--
   <property name="skip.tests" value="true"/>
    -->
   
@@ -293,73 +293,6 @@
       </fileset>
       </copy>
     <mkdir dir="${artifact.output.websockettest:war_exploded}/WEB-INF/classes"/>
-
-    <!--<copy file="${basedir}/lib/spring-instrument-4.1.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-instrument-4.1.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-instrument-tomcat-4.1.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-instrument-tomcat-4.1.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-aspects-4.1.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-aspects-4.1.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-context-support-4.1.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-context-support-4.1.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-jdbc-4.1.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-jdbc-4.1.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-expression-4.1.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-expression-4.1.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-jms-4.1.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-jms-4.1.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-aop-4.1.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-aop-4.1.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-orm-4.1.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-orm-4.1.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-messaging-4.1.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-messaging-4.1.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-oxm-4.1.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-oxm-4.1.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-tx-4.1.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-tx-4.1.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/commons-logging-1.1.3.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/commons-logging-1.1.3.jar"/>
-    <copy file="${basedir}/lib/aopalliance-1.0.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/aopalliance-1.0.jar"/>
-    <copy file="${basedir}/lib/spring-test-4.1.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-test-4.1.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-beans-4.1.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-beans-4.1.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-context-4.1.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-context-4.1.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-core-4.1.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-core-4.1.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-integration-feed-4.0.3.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-integration-feed-4.0.3.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-integration-groovy-4.0.3.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-integration-groovy-4.0.3.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-integration-gemfire-4.0.3.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-integration-gemfire-4.0.3.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-integration-event-4.0.3.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-integration-event-4.0.3.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-integration-amqp-4.0.3.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-integration-amqp-4.0.3.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-integration-ftp-4.0.3.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-integration-ftp-4.0.3.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-integration-http-4.0.3.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-integration-http-4.0.3.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-integration-file-4.0.3.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-integration-file-4.0.3.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-integration-jdbc-4.0.3.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-integration-jdbc-4.0.3.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-integration-jmx-4.0.3.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-integration-jmx-4.0.3.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-integration-ip-4.0.3.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-integration-ip-4.0.3.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-integration-jpa-4.0.3.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-integration-jpa-4.0.3.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-integration-mail-4.0.3.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-integration-mail-4.0.3.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-integration-mongodb-4.0.3.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-integration-mongodb-4.0.3.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-integration-jms-4.0.3.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-integration-jms-4.0.3.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-integration-mqtt-4.0.3.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-integration-mqtt-4.0.3.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-integration-rmi-4.0.3.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-integration-rmi-4.0.3.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-integration-redis-4.0.3.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-integration-redis-4.0.3.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-integration-scripting-4.0.3.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-integration-scripting-4.0.3.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-integration-security-4.0.3.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-integration-security-4.0.3.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-integration-syslog-4.0.3.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-integration-syslog-4.0.3.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-integration-test-4.0.3.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-integration-test-4.0.3.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-integration-twitter-4.0.3.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-integration-twitter-4.0.3.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-integration-stream-4.0.3.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-integration-stream-4.0.3.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-integration-sftp-4.0.3.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-integration-sftp-4.0.3.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-integration-ws-4.0.3.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-integration-ws-4.0.3.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-integration-core-4.0.3.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-integration-core-4.0.3.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-integration-xmpp-4.0.3.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-integration-xmpp-4.0.3.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-integration-xml-4.0.3.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-integration-xml-4.0.3.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-security-openid-3.2.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-security-openid-3.2.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-security-crypto-3.2.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-security-crypto-3.2.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-security-cas-3.2.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-security-cas-3.2.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-security-aspects-3.2.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-security-aspects-3.2.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-security-acl-3.2.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-security-acl-3.2.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-security-ldap-3.2.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-security-ldap-3.2.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-security-remoting-3.2.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-security-remoting-3.2.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-security-taglibs-3.2.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-security-taglibs-3.2.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-security-core-3.2.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-security-core-3.2.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-security-config-3.2.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-security-config-3.2.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-security-web-3.2.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-security-web-3.2.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-webmvc-portlet-4.1.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-webmvc-portlet-4.1.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-webmvc-4.1.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-webmvc-4.1.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-websocket-4.1.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-websocket-4.1.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/spring-web-4.1.5.RELEASE.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/spring-web-4.1.5.RELEASE.jar"/>
-    <copy file="${basedir}/lib/jackson-annotations-2.5.0.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/jackson-annotations-2.5.0.jar"/>
-    <copy file="${basedir}/lib/jackson-core-2.5.0.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/jackson-core-2.5.0.jar"/>
-    <copy file="${basedir}/lib/jackson-databind-2.5.0.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/jackson-databind-2.5.0.jar"/>
-    <copy file="${basedir}/lib/jackson-jaxrs-json-provider-2.5.0.jar" tofile="${artifact.output.websockettest:war_exploded}/WEB-INF/lib/jackson-jaxrs-json-provider-2.5.0.jar"/>-->
   </target>
   
   <target name="build.all.artifacts" depends="artifact.websockettest:war_exploded" description="Build all artifacts">
