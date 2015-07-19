@@ -139,8 +139,8 @@
   <!-- Application Server Libraries -->
   
   <path id="library.tomcat_7.0.47.classpath">
-    <pathelement location="/Library/Tomcat/lib/jsp-api.jar"/>
-    <pathelement location="/Library/Tomcat/lib/servlet-api.jar"/>
+    <pathelement location="${basedir}/lib/jsp-api.jar"/>
+    <pathelement location="${basedir}/lib/servlet-api.jar"/>
   </path>
   
   <!-- Modules -->
