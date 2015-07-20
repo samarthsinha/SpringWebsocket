@@ -23,10 +23,61 @@
 
 <hr>
 
-<pre><code>    class Test{
+<div class="highlight highlight-java"><pre><span class="pl-k">package</span> <span class="pl-smi">com.smapp.config</span>;
 
-     }
-</code></pre>
+<span class="pl-k">import</span> <span class="pl-smi">org.springframework.context.annotation.Bean</span>;
+<span class="pl-k">import</span> <span class="pl-smi">org.springframework.context.annotation.ComponentScan</span>;
+<span class="pl-k">import</span> <span class="pl-smi">org.springframework.context.annotation.Configuration</span>;
+<span class="pl-k">import</span> <span class="pl-smi">org.springframework.context.annotation.Import</span>;
+<span class="pl-k">import</span> <span class="pl-smi">org.springframework.web.servlet.config.annotation.*</span>;
+<span class="pl-k">import</span> <span class="pl-smi">org.springframework.web.servlet.mvc.WebContentInterceptor</span>;
+<span class="pl-k">import</span> <span class="pl-smi">org.springframework.web.servlet.view.InternalResourceViewResolver</span>;
+
+<span class="pl-c">/**</span>
+<span class="pl-c"> * Created by samarth on 04/03/15.</span>
+<span class="pl-c"> */</span>
+@<span class="pl-smi">Configuration</span>
+@<span class="pl-smi">EnableWebMvc</span>
+@ComponentScan(basePackages <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>com.smapp<span class="pl-pds">"</span></span>)
+@Import({ <span class="pl-smi">WebSocketConfig</span><span class="pl-k">.</span>class })
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">WebConfig</span> <span class="pl-k">extends</span> <span class="pl-e">WebMvcConfigurerAdapter</span> {
+
+
+    <span class="pl-k">@Bean</span>
+    <span class="pl-k">public</span> <span class="pl-smi">InternalResourceViewResolver</span> <span class="pl-en">getInternalResourceViewResolver</span>() {
+        <span class="pl-smi">InternalResourceViewResolver</span> resourceViewResolver <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">InternalResourceViewResolver</span>();
+        resourceViewResolver<span class="pl-k">.</span>setPrefix(<span class="pl-s"><span class="pl-pds">"</span>/WEB-INF/views/<span class="pl-pds">"</span></span>);
+        resourceViewResolver<span class="pl-k">.</span>setSuffix(<span class="pl-s"><span class="pl-pds">"</span>.jsp<span class="pl-pds">"</span></span>);
+        <span class="pl-k">return</span> resourceViewResolver;
+    }
+
+    <span class="pl-k">@Bean</span>
+    <span class="pl-k">public</span> <span class="pl-smi">WebContentInterceptor</span> <span class="pl-en">webContentInterceptor</span>() {
+        <span class="pl-smi">WebContentInterceptor</span> interceptor <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">WebContentInterceptor</span>();
+        interceptor<span class="pl-k">.</span>setCacheSeconds(<span class="pl-c1">0</span>);
+        interceptor<span class="pl-k">.</span>setUseExpiresHeader(<span class="pl-c1">true</span>);
+        interceptor<span class="pl-k">.</span>setUseCacheControlHeader(<span class="pl-c1">true</span>);
+        interceptor<span class="pl-k">.</span>setUseCacheControlNoStore(<span class="pl-c1">true</span>);
+        <span class="pl-k">return</span> interceptor;
+    }
+
+    <span class="pl-k">@Override</span> <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">configureDefaultServletHandling</span>(<span class="pl-smi">DefaultServletHandlerConfigurer</span> <span class="pl-v">configurer</span>) {
+        configurer<span class="pl-k">.</span>enable();
+    }
+
+    <span class="pl-k">@Override</span> <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">addInterceptors</span>(<span class="pl-smi">InterceptorRegistry</span> <span class="pl-v">registry</span>) {
+        registry<span class="pl-k">.</span>addInterceptor(webContentInterceptor());
+        <span class="pl-c">//        registry.addInterceptor(new PathMatchingInterceptor());</span>
+    }
+
+    <span class="pl-k">@Override</span> <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">addResourceHandlers</span>(<span class="pl-smi">ResourceHandlerRegistry</span> <span class="pl-v">registry</span>) {
+        registry<span class="pl-k">.</span>addResourceHandler(<span class="pl-s"><span class="pl-pds">"</span>/libs/**<span class="pl-pds">"</span></span>)<span class="pl-k">.</span>addResourceLocations(<span class="pl-s"><span class="pl-pds">"</span>/libs/<span class="pl-pds">"</span></span>);
+        registry<span class="pl-k">.</span>addResourceHandler(<span class="pl-s"><span class="pl-pds">"</span>/app/**<span class="pl-pds">"</span></span>)<span class="pl-k">.</span>addResourceLocations(<span class="pl-s"><span class="pl-pds">"</span>/app/<span class="pl-pds">"</span></span>);
+        registry<span class="pl-k">.</span>addResourceHandler(<span class="pl-s"><span class="pl-pds">"</span>/assets/**<span class="pl-pds">"</span></span>)<span class="pl-k">.</span>addResourceLocations(<span class="pl-s"><span class="pl-pds">"</span>/assets/<span class="pl-pds">"</span></span>);
+
+    }
+}```
+</pre></div>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/samarthbsb/SpringWebsocket">Springwebsocket</a> is maintained by <a href="https://github.com/samarthbsb">samarthbsb</a>.</span>
