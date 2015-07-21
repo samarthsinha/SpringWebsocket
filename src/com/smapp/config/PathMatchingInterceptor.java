@@ -1,5 +1,6 @@
 package com.smapp.config;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.WebContentInterceptor;
 
@@ -10,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by samarth on 06/03/15.
  */
-//@Component
+@Component
 public class PathMatchingInterceptor extends WebContentInterceptor {
 
     @Override public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws ServletException {

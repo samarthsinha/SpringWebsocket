@@ -1,9 +1,13 @@
 package com.smapp.config;
 
+import org.springframework.web.context.ContextLoaderListener;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.Filter;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletRegistration;
 import java.nio.charset.StandardCharsets;
 
@@ -37,7 +41,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
         return new Filter[] { characterEncodingFilter };
     }
 
-   /* @Override
+    @Override
     public void onStartup(ServletContext container) {
         // Create the 'root' Spring application context
         AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
@@ -56,5 +60,5 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("/");
 
-    }*/
+    }
 }

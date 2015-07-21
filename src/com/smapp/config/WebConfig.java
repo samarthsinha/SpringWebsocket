@@ -42,7 +42,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(webContentInterceptor());
-        //        registry.addInterceptor(new PathMatchingInterceptor());
+        registry.addInterceptor(new PathMatchingInterceptor());
     }
 
     @Override public void addResourceHandlers(ResourceHandlerRegistry registry) {
