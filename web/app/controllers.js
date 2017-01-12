@@ -1,7 +1,9 @@
 /**
  * Created by samarth on 05/03/15.
  */
-angular.module("chatApp.controllers").controller("ChatCtrl",function($scope,ChatService){
+var app = angular.module('chatApp', []);
+var app = app || angular.module('chatApp');
+app.controller("ChatCtrl",function($scope,ChatService){
    $scope.messages=[];
    $scope.message="";
     $scope.max=140;

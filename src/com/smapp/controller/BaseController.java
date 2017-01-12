@@ -27,7 +27,7 @@ public class BaseController {
     private        SecureRandom        random        = new SecureRandom();
     private String sessionId;
 
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    @RequestMapping(value = {"","/","/index"}, method = RequestMethod.GET)
     public String viewApplication(HttpServletRequest request, HttpServletResponse response) throws IOException {
         sessionId = request.getRequestedSessionId();
         if(!sessionToName.containsKey(sessionId)){

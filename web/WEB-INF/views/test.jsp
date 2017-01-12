@@ -25,7 +25,7 @@
     var sock = new SockJS('http://localhost:8080/hello');
     sock.onopen=function(){
         console.log()
-    }
+    };
     sock.onmessage = function(message) {
         console.log('message', e.data);
         document.querySelector("#testBox").innerHTML = document.querySelector("#id").innerHTML + "<BR>" + e.data;

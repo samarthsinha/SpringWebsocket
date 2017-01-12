@@ -1,0 +1,86 @@
+html,
+body{
+    font-family: Arial;
+    font-size: large;
+    margin: 0 auto;
+    padding: 0;
+}
+header{
+    height:5vh;
+    width: 100%;
+    color:white;
+    text-align: center;
+    font-family: Arial;
+    padding:5px;
+    background-color: #45a049;
+}
+.container{
+    margin:10px;
+}
+.message_box{
+    height: 82vh;
+    max-height: 82vh;
+    overflow: auto;
+}
+.timeBlock{
+    font-size: xx-small;
+    display: block;
+}
+.message{
+    padding: 10px;
+    float:left;
+    padding:5px;
+    width: 60%;
+    height: auto;
+    word-wrap: break-word;
+    overflow: auto;
+    border: 1px solid #4caf50;
+    background-color: #6daf4a;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    color: white;
+}
+.message.m_self{
+    float:right;
+    background-color: #eeeeee;
+    border: 1px solid #ded9d3;
+    color:black;
+}
+input[name='message']{
+    width: 105%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    font-size:12px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px 0px 0px 4px;
+    -webkit-border-radius: 4px 0px 0px 4px;
+    -moz-border-radius: 4px 0px 0px 4px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+input[type=submit] {
+    background-color: #4caf50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 0px 4px 4px 0px;
+    -webkit-border-radius: 0px 4px 4px 0px;
+    -moz-border-radius:0px 4px 4px 0px;
+    cursor: pointer;
+    float: right;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+input[type=submit]:hover,input[type=submit]:disabled {
+    background-color: #72a06c;
+    float: right;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+.info{
+    font-size: xx-small;
+}

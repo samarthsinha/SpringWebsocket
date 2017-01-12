@@ -1,8 +1,8 @@
 /**
  * Created by samarth on 05/03/15.
  */
-
-angular.module("chatApp.services").service("ChatService",function($q,$timeout){
+var app = app || angular.module('chatApp');
+app.service("ChatService",function($q,$timeout){
     var service = {}, listener = $q.defer(), socket = {
         client: null,
         stomp:null
@@ -25,7 +25,7 @@ angular.module("chatApp.services").service("ChatService",function($q,$timeout){
             message : message,
             id:id
         }));
-        messageIds.push(id);
+        messageIds.push(""+id);
     };
     var reconnect = function(){
         $timeout(function(){
@@ -37,15 +37,20 @@ angular.module("chatApp.services").service("ChatService",function($q,$timeout){
         var message = JSON.parse(data), out = {};
         out.message = message.message;
         out.time = new Date(message.time);
-        if(_.contains(messageIds,message.id)){
+        console.log("here",messageIds,message.id);
+        var indexFound = messageIds.indexOf(message.id);
+        console.log("INDEX",indexFound);
+        if(indexFound>-1){
             out.self = true;
-            messageIds = _.remove(messageIds,message,id);
+            console.log(indexFound);
+            messageIds.splice(indexFound,1);
         }
         return out;
     };
 
     var startListener = function(){
         socket.stomp.subscribe(service.CHAT_TOPIC,function(data){
+            console.log("herhe",data.body);
             listener.notify(getMessage(data.body));
         });
     };
@@ -54,7 +59,7 @@ angular.module("chatApp.services").service("ChatService",function($q,$timeout){
         socket.client = new SockJS(service.SOCKET_URL);
         socket.stomp = Stomp.over(socket.client);
         socket.stomp.connect({},startListener);
-        /*socket.stomp.onclose = reconnect();*/
+        // socket.stomp.onclose = reconnect();
     };
 
     initialize();
