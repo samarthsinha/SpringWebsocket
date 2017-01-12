@@ -9,7 +9,7 @@
 <!DOCTYPE HTML>
 <html lang="en" ng-app="chatApp">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0,width=device-width">
     <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet"
           type="text/css"/>
     <link href="assets/style.css" rel="stylesheet" type="text/css"/>
@@ -21,7 +21,7 @@
 </header>
 <div ng-controller="ChatCtrl" class="container" data-id="${pageContext.session.id}">
 
-    <div class="message_box">
+    <div class="message_box" ng-cloak>
         <p ng-repeat="message1 in messages | orderBy:'time':false" class="message"
            ng-class="{m_self: message1.self}">
             <time class="timeBlock" ng-class="{m_self: message1.self}">{{message1.time |

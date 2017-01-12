@@ -6,20 +6,19 @@ body{
     padding: 0;
 }
 header{
-    height:5vh;
+    height:4vh;
     width: 100%;
     color:white;
     text-align: center;
-    font-family: Arial;
-    padding:5px;
+    padding-top:8px;
     background-color: #45a049;
 }
 .container{
     margin:10px;
 }
 .message_box{
-    height: 82vh;
-    max-height: 82vh;
+    height: 80vh;
+    max-height: 80vh;
     overflow: auto;
 }
 .timeBlock{
@@ -83,4 +82,7 @@ input[type=submit]:hover,input[type=submit]:disabled {
 }
 .info{
     font-size: xx-small;
+}
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
 }
