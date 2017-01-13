@@ -27,7 +27,7 @@ public class MessagePusherService {
     public void sendQuotes() {
         OutputMessage message = new OutputMessage(new Message(String.format("Hey there this is pushed %d", System.currentTimeMillis()), String.valueOf(Math.random()),""), new Date());
         //System.out.println("HERE: " + System.currentTimeMillis());
-//        simpMessagingTemplate.convertAndSend("/topic/message", message);
+//  simpMessagingTemplate.convertAndSend("/topic/reply/test", message);
     }
 
 }

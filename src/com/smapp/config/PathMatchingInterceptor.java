@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 public class PathMatchingInterceptor extends WebContentInterceptor {
 
     @Override public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws ServletException {
-        System.out.println("PRE: " + request.getRequestURI()+" "+request.getHeaderNames());
+        System.out.println("PRE: " + request.getRequestURI()+" "+request.getHeaderNames().toString());
         return super.preHandle(request, response, handler);
     }
 
