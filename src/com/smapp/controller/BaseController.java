@@ -52,26 +52,20 @@ public class BaseController {
 
     @RequestMapping(value = "test", method = RequestMethod.GET)
     public String TestHandler(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        //        response.getWriter().write("Test");
         return "test";
     }
 
     @MessageMapping("/notification")
     @SendTo("/topic/message")
     public OutputMessage sendMessage(Message message) {
-//        if(sessionToName.containsKey(message.getId())){
-//            message.setName(sessionToName.get(message.getId()));
-//        }
         if("CONNECTED".equalsIgnoreCase(message.getType()) || "DISCONNECTED".equalsIgnoreCase(message.getType())){
             message.setMessage(String.format("%s %s!!",message.getName(),message.getType().toLowerCase()));
         }
-        System.out.println("----" +message.getName());
         return new OutputMessage(message, new Date());
     }
 
     @MessageMapping("/sendto/{userName}")
     public OutputMessage sendToUser(Message message,@DestinationVariable(value = "userName") String userName){
-        System.out.println("user mapping works "+ message+ " " +userName);
         OutputMessage outputMessage = new OutputMessage(message, new Date());
         if(userName!=null && !userName.equalsIgnoreCase(message.getName())){
             simpMessagingTemplate.convertAndSend("/topic/reply/"+message.getName(),outputMessage);
