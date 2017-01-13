@@ -119,12 +119,12 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 ##Controller Mapping for messages
 ```java
 @MessageMapping("/notification")
-    @SendTo("/topic/message")
-    public OutputMessage sendMessage(Message message) {
-        if("CONNECTED".equalsIgnoreCase(message.getType()) || "DISCONNECTED".equalsIgnoreCase(message.getType())){
-            message.setMessage(String.format("%s %s!!",message.getName(),message.getType().toLowerCase()));
-        }
-        return new OutputMessage(message, new Date());
+@SendTo("/topic/message")
+public OutputMessage sendMessage(Message message) {
+    if("CONNECTED".equalsIgnoreCase(message.getType()) || "DISCONNECTED".equalsIgnoreCase(message.getType())){
+        message.setMessage(String.format("%s %s!!",message.getName(),message.getType().toLowerCase()));
+    }
+    return new OutputMessage(message, new Date());
 }
 ```
 
