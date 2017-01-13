@@ -59,8 +59,11 @@ public class BaseController {
     @MessageMapping("/notification")
     @SendTo("/topic/message")
     public OutputMessage sendMessage(Message message) {
-        if(sessionToName.containsKey(message.getId())){
-            message.setName(sessionToName.get(message.getId()));
+//        if(sessionToName.containsKey(message.getId())){
+//            message.setName(sessionToName.get(message.getId()));
+//        }
+        if("CONNECTED".equalsIgnoreCase(message.getType()) || "DISCONNECTED".equalsIgnoreCase(message.getType())){
+            message.setMessage(String.format("%s %s!!",message.getName(),message.getType().toLowerCase()));
         }
         System.out.println("----" +message.getName());
         return new OutputMessage(message, new Date());

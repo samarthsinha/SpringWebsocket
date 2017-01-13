@@ -29,14 +29,15 @@
             </div>
         </form>
     </div>
+
     <div ng-if="!isEmpty(getCookie('userName'))" ng-cloak>
         <div class="message_box" ng-cloak>
             <p ng-repeat="message1 in messages | orderBy:'time':false" class="message"
-               ng-class="{m_self: message1.self}">
-                <time class="timeBlock" ng-class="{m_self: message1.self}">{{message1.time |
+               ng-class="{m_self: message1.self,m_connect: message1.type=='CONNECTED'}">
+                <time class="timeBlock" ng-class="{m_self: message1.self}" ng-hide="message1.type=='CONNECTED'">{{message1.time |
                     date:'M/d/yyyy HH:mm:ss'}}
                 </time>
-                <span class="user_detail" ng-hide="message1.self">{{message1.name}} says: </span>
+                <span class="user_detail" ng-hide="message1.self || message1.type=='CONNECTED'">{{message1.name}} says: </span>
                 <span class="m_block" ng-bind="message1.message"
                       ng-class="{m_self: message1.self}"></span>
             </p>
@@ -45,6 +46,7 @@
             <span ng-bind="message.length"></span>/<span class="count"
                                                          ng-bind="{{max - message.length}}"
                                                          ng-class="{danger: message.length > max}"></span>
+            <span class="hint">To send message to a specific user target message like '@&lt;username&gt; hey there' do not use @&lt;username&gt; before message to send to chat room</span>
         </div>
         <form ng-submit="$parent.addMessage()" name="messageForm" ng-init="init()">
             <input type="submit" ng-disabled="$parent.message.length >$parent.max || $parent.message.length === 0"

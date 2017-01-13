@@ -25,7 +25,7 @@ public class MessagePusherService {
 
     @Scheduled(fixedDelay = 5000)
     public void sendQuotes() {
-        OutputMessage message = new OutputMessage(new Message(String.format("Hey there this is pushed %d", System.currentTimeMillis()), String.valueOf(Math.random()),""), new Date());
+        OutputMessage message = new OutputMessage(new Message(String.format("Hey there this is pushed %d", System.currentTimeMillis()), String.valueOf(Math.random()),"","CHAT"), new Date());
         //System.out.println("HERE: " + System.currentTimeMillis());
 //  simpMessagingTemplate.convertAndSend("/topic/reply/test", message);
     }

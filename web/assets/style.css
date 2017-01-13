@@ -46,6 +46,17 @@ header{
     border: 1px solid #ded9d3;
     color:black;
 }
+.message.m_connect{
+    font-size: xx-small!important;
+    background-color: lightgoldenrodyellow !important;
+    color: #4a6267;
+    width: 95% !important;
+    border: 1px solid lightgoldenrodyellow !important;
+    float:left !important;
+}
+.m_connect{
+
+}
 input[type="text"]{
     width: 105%;
     padding: 12px 20px;
@@ -96,4 +107,8 @@ input[type=submit]:hover,input[type=submit]:disabled {
 }
 form[name='loginForm']{
     margin-top:200px;
+}
+.hint{
+    font-size: xx-small;
+    font-style: italic;
 }
