@@ -1,7 +1,7 @@
 ![Build Status](https://api.travis-ci.org/samarthbsb/SpringWebsocket.svg?branch=master)
 
 ***
-## Configuring WebMVC and JSP resolver
+##Configuring WebMVC and JSP resolver
 
 ```java
 package com.smapp.config;
@@ -117,11 +117,12 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 ```
 
 ##Controller Mapping for messages
+
 ```java
 @MessageMapping("/notification")
 @SendTo("/topic/message")
-public OutputMessage sendMessage(Message message) {
-    if("CONNECTED".equalsIgnoreCase(message.getType()) || "DISCONNECTED".equalsIgnoreCase(message.getType())){
+public OutputMessage sendMessage(Message message){
+    if("CONNECTED".equalsIgnoreCase(message.getType()) || "DISCONNECTED".equalsIgnoreCase(message.getType(){
         message.setMessage(String.format("%s %s!!",message.getName(),message.getType().toLowerCase()));
     }
     return new OutputMessage(message, new Date());
