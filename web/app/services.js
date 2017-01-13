@@ -17,16 +17,39 @@ app.service("ChatService",function($q,$timeout){
         return listener.promise;
     };
 
+
+    service._send = function(message,topic){
+        var id = Math.floor(Math.random() * 1000000);
+        socket.stomp.send(topic,{
+            priority:9
+        }, JSON.stringify({
+                              message : message,
+                              id:id,
+                              name:service.user
+                          }));
+        messageIds.push(""+id);
+    };
     service.send = function(message){
+        service._send(message,service.CHAT_BROKER);
+    };
+
+    service.sendHandShake = function(user){
         var id = Math.floor(Math.random() * 1000000);
         socket.stomp.send(service.CHAT_BROKER,{
             priority:9
         }, JSON.stringify({
-            message : message,
-            id:id
-        }));
+                              id:id,
+                              name:service.user,
+                              type:"CONNECTED"
+                          }));
         messageIds.push(""+id);
     };
+
+    service.sendToUser = function (message, toUser) {
+        service._send(message,"/testApp/sendto/"+toUser);
+        console.log("Sending to user on topic: " + "/testApp/sendto/"+toUser);
+    };
+
     var reconnect = function(){
         $timeout(function(){
             initialize();
@@ -37,6 +60,8 @@ app.service("ChatService",function($q,$timeout){
         var message = JSON.parse(data), out = {};
         out.message = message.message;
         out.time = new Date(message.time);
+        out.name = message.name;
+        out.type = message.type;
         console.log("here",messageIds,message.id);
         var indexFound = messageIds.indexOf(message.id);
         console.log("INDEX",indexFound);
@@ -53,15 +78,26 @@ app.service("ChatService",function($q,$timeout){
             console.log("herhe",data.body);
             listener.notify(getMessage(data.body));
         });
+        // console.log("subscribed to : "+"/topic/reply/"+service.user);
+        socket.stomp.subscribe("/topic/reply/"+service.user,function(data){
+            console.log("User Message",data.body);
+            listener.notify(getMessage(data.body));
+        });
+        service.sendHandShake(service.user);
     };
 
     var initialize = function(){
         socket.client = new SockJS(service.SOCKET_URL);
         socket.stomp = Stomp.over(socket.client);
-        socket.stomp.connect({},startListener);
+        socket.stomp.connect({login:service.user},startListener);
         // socket.stomp.onclose = reconnect();
     };
 
-    initialize();
+    service.user = "";
+    service.init = function(userName){
+        service.user = userName;
+        initialize();
+    };
+
     return service;
 });

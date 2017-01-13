@@ -8,6 +8,7 @@ public class Message {
     private String message;
     private String id;
     private String name;
+    private String type;
 
     public String getName() {
         return name;
@@ -20,10 +21,11 @@ public class Message {
     public Message() {
     }
 
-    public Message(String message, String id,String name) {
+    public Message(String message, String id,String name,String type) {
         this.message = message;
         this.id = id;
         this.name=name;
+        this.type=type;
     }
 
     public String getMessage() {
@@ -40,5 +42,22 @@ public class Message {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "message='" + message + '\'' +
+                ", id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
