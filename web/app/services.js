@@ -2,7 +2,7 @@
  * Created by samarth on 05/03/15.
  */
 var app = app || angular.module('chatApp');
-app.service("ChatService",function($q,$timeout){
+app.service("ChatService",function($q,$sce,$timeout){
     var service = {}, listener = $q.defer(), socket = {
         client: null,
         stomp:null
@@ -17,6 +17,16 @@ app.service("ChatService",function($q,$timeout){
         return listener.promise;
     };
 
+    service.stringContainingUrl = function(message){
+        var regexpUrl =  /\b(https?|s?ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?\b/i;
+        return regexpUrl.test(message);
+    };
+
+    service.transformUrlToLink = function(message){
+        // var regex = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
+        // message = message.replace(regex,'<a href="$1" target="_blank">$1</a>');
+        return $sce.trustAsHtml(message);
+    };
 
     service._send = function(message,topic){
         var id = Math.floor(Math.random() * 1000000);
@@ -58,6 +68,10 @@ app.service("ChatService",function($q,$timeout){
 
     var getMessage = function(data){
         var message = JSON.parse(data), out = {};
+        message.message =service.transformUrlToLink(message.message)
+        // if(message.message =service.transformUrlToLink(message.message)){
+        //     console.log("message contains url",message.message);
+        // }
         out.message = message.message;
         out.time = new Date(message.time);
         out.name = message.name;

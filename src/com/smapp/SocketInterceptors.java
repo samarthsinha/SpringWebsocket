@@ -34,14 +34,14 @@ public class  SocketInterceptors extends ChannelInterceptorAdapter{
 
         switch(sha.getCommand()) {
             case CONNECT:
-                System.out.println("STOMP Connect [sessionId: " + sessionId + "]" + sha.getNativeHeader("login").get(0));
-                String user = sha.getNativeHeader("login").get(0);
-                Set<String> sessionSet = new HashSet<>();
-                if(sessionMap.containsKey(user) && sessionMap.get(user)!=null){
-                    sessionSet = sessionMap.get(user);
-                }
-                sessionSet.add(sessionId);
-                sessionMap.put(user,sessionSet);
+                System.out.println("STOMP Connect [sessionId: " + sessionId + "]" + sha.toString());
+//                String user = sha.getNativeHeader("login").get(0);
+//                Set<String> sessionSet = new HashSet<>();
+//                if(sessionMap.containsKey(user) && sessionMap.get(user)!=null){
+//                    sessionSet = sessionMap.get(user);
+//                }
+//                sessionSet.add(sessionId);
+//                sessionMap.put(user,sessionSet);
                 break;
             case CONNECTED:
                 System.out.println("STOMP Connected [sessionId: " + sessionId + "]");

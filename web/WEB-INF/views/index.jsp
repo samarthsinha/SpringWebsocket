@@ -38,8 +38,8 @@
                     date:'M/d/yyyy HH:mm:ss'}}
                 </time>
                 <span class="user_detail" ng-hide="message1.self || message1.type=='CONNECTED'">{{message1.name}} says: </span>
-                <span class="m_block" ng-bind="message1.message"
-                      ng-class="{m_self: message1.self}"></span>
+                <span class="m_block" <%--ng-bind="message1.message"--%>
+                      ng-bind-html='message1.message' ng-class="{m_self: message1.self}"></span>
             </p>
         </div>
         <div class="info">
@@ -62,6 +62,7 @@
 <script src="libs/sockjs-0.3.4.min.js" type="text/javascript"></script>
 <script src="libs/stomp.min.js" type="text/javascript"></script>
 <script src="libs/angular.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-sanitize.min.js" type="text/javascript"></script>
 <script src="libs/lodash.min.js" type="text/javascript"></script>
 <script src="app/app.js" type="text/javascript"></script>
 <script src="app/controllers.js" type="text/javascript"></script>

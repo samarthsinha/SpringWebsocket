@@ -1,7 +1,7 @@
 /**
  * Created by samarth on 05/03/15.
  */
-var app = angular.module('chatApp', []);
+var app = angular.module('chatApp', ['ngSanitize']);
 var app = app || angular.module('chatApp');
 app.controller("ChatCtrl",['$scope','ChatService',function($scope,ChatService){
    $scope.messages=[];
