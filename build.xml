@@ -308,4 +308,8 @@
       <mkdir dir="${basedir}/dist"/>
       <war basedir="${artifact.output.websockettest:war_exploded}" destfile="${basedir}/dist/ROOT.war" needxmlfile="false"/>
   </target>
+  <target name="install" depends="clean,all">
+      <mkdir dir="${basedir}/dist"/>
+      <war basedir="${artifact.output.websockettest:war_exploded}" destfile="${basedir}/target/ROOT.war" needxmlfile="false"/>
+  </target>
 </project>
