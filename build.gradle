@@ -1,0 +1,84 @@
+buildscript{
+    repositories{
+        mavenCentral()
+
+    }
+    dependencies{
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.9.RELEASE")
+    }
+}
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+version='0.0.1'
+
+ext.deps = [
+        spring_security_version:'4.2.5.RELEASE',
+        spring_security_oauth_version:'2.3.3.RELEASE'
+]
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    jcenter()
+    maven  {
+        url "http://repo1.maven.org/maven2"
+    }
+    maven  {
+        url "http://repository.jboss.org/nexus/content/groups/public-jboss/"
+    }
+
+}
+sourceSets {
+    main.java.srcDir "src/main/java"
+}
+configurations {
+    chatConfig.extendsFrom(compile)
+    compile.exclude module: 'spring-boot-starter-logging'
+}
+mainClassName='com.smapp.ChatApplication'
+dependencies {
+    chatConfig sourceSets.main.output
+
+//    compile ('org.springframework.security.oauth:spring-security-oauth2:'+deps.spring_security_oauth_version)
+//    compile 'org.springframework.security:spring-security-core:'+ deps.spring_security_version
+//    compile 'org.springframework.security:spring-security-web:'+ deps.spring_security_version
+//    compile 'org.springframework.security:spring-security-config'
+
+    compile('org.springframework.boot:spring-boot-starter:1.5.9.RELEASE'){
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+    // https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
+    compileOnly group: 'javax.servlet', name: 'javax.servlet-api', version: '3.0.1'
+    // https://mvnrepository.com/artifact/javax.servlet.jsp/jsp-api
+    compileOnly group: 'javax.servlet.jsp', name: 'jsp-api', version: '2.2'
+
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-websocket
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version: '1.5.9.RELEASE'
+    compile 'org.springframework:spring-expression:4.3.23.RELEASE'
+    compile("org.springframework.boot:spring-boot-starter-web:1.5.9.RELEASE")
+    compile('org.springframework.boot:spring-boot-starter-log4j2:1.5.9.RELEASE')
+
+
+
+    // https://mvnrepository.com/artifact/org.springframework/spring-messaging
+    compile group: 'org.springframework', name: 'spring-messaging', version: '4.3.23.RELEASE'
+//    compile fileTree(dir: 'lib', include: ['*.jar'])
+    testCompile("org.springframework.boot:spring-boot-starter-test:1.5.9.RELEASE"){
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+}
+jar{
+    baseName = 'chatbooth'
+}
+
+
+//bootRepackage {
+//    mainClass = 'com.airtel.integrator.admin.IntegratorAdminApp'
+//}
+
