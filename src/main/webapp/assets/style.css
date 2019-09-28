@@ -17,8 +17,8 @@ header{
     margin:10px;
 }
 .message_box{
-    height: 80vh;
-    max-height: 80vh;
+    height: 75vh;
+    max-height: 75vh;
     overflow: auto;
 }
 .timeBlock{

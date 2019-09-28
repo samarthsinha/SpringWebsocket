@@ -4,9 +4,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.http.CacheControl;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.mvc.WebContentInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
 
 /**
  * Created by samarth on 04/03/15.
@@ -21,18 +23,15 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Bean
     public InternalResourceViewResolver getInternalResourceViewResolver() {
         InternalResourceViewResolver resourceViewResolver = new InternalResourceViewResolver();
+        resourceViewResolver.setViewClass(JstlView.class);
         resourceViewResolver.setPrefix("/WEB-INF/views/");
-        resourceViewResolver.setSuffix(".jsp");
+        resourceViewResolver.setSuffix(".html");
         return resourceViewResolver;
     }
 
     @Bean
     public WebContentInterceptor webContentInterceptor() {
         WebContentInterceptor interceptor = new WebContentInterceptor();
-        interceptor.setCacheSeconds(0);
-        interceptor.setUseExpiresHeader(true);
-        interceptor.setUseCacheControlHeader(true);
-        interceptor.setUseCacheControlNoStore(true);
         return interceptor;
     }
 

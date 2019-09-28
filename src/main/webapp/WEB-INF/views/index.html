@@ -23,14 +23,14 @@
     </div>
 
     <div ng-if="!isEmpty(getCookie('userName'))" ng-cloak>
-        <div class="message_box" ng-cloak>
+        <div class="message_box" ng-cloak scroll-bottom="messages">
             <p ng-repeat="message1 in messages | orderBy:'time':false" class="message"
                ng-class="{m_self: message1.self,m_connect: message1.type=='CONNECTED'}">
                 <time class="timeBlock" ng-class="{m_self: message1.self}" ng-hide="message1.type=='CONNECTED'">{{message1.time |
                     date:'M/d/yyyy HH:mm:ss'}}
                 </time>
                 <span class="user_detail" ng-hide="message1.self || message1.type=='CONNECTED'">{{message1.name}} says: </span>
-                <span class="m_block" ng-bind="message1.message"
+                <span class="m_block"
                       ng-bind-html='message1.message' ng-class="{m_self: message1.self}"></span>
             </p>
         </div>

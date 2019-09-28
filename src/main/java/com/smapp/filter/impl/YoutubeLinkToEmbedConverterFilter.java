@@ -2,6 +2,7 @@ package com.smapp.filter.impl;
 
 import com.smapp.filter.OutBoundMessageFilter;
 import com.smapp.model.OutputMessage;
+import org.springframework.web.servlet.support.RequestContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ public class YoutubeLinkToEmbedConverterFilter implements OutBoundMessageFilter 
             utubeVids.add(matcher.group(2));
             int start = matcher.start();
             int end = matcher.end();
-            String embed="<br><iframe type=\"text/html\" width=\"480\" height=\"240\" src=\"https://www.youtube.com/embed/"+matcher.group(2)+"?autoplay=0&origin=localhost\" frameborder=\"0\"></iframe>";
+            String embed="<br><iframe type=\"text/html\" width=\"480\" height=\"240\" src=\"https://www.youtube.com/embed/"+matcher.group(2)+"?autoplay=0\" frameborder=\"0\"></iframe>";
             outputString = outputString + msg.substring(prevEnd,start) + embed;
             prevEnd = end;
         }

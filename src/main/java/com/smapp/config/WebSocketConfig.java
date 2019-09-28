@@ -36,12 +36,12 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
     @Override
     public void configureClientInboundChannel(ChannelRegistration registration) {
         registration.taskExecutor().corePoolSize(16).maxPoolSize(16);
-        registration.setInterceptors(socketInterceptors());
+        registration.interceptors(socketInterceptors());
     }
 
     @Override
     public void configureClientOutboundChannel(ChannelRegistration registration) {
         registration.taskExecutor().corePoolSize(16).maxPoolSize(16);
-        registration.setInterceptors(socketInterceptors());
+        registration.interceptors(socketInterceptors());
     }
 }

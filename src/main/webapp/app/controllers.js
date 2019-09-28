@@ -105,3 +105,22 @@ app.controller("ChatCtrl",['$scope','ChatService',function($scope,ChatService){
             document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
         }
 }]);
+
+
+app.directive('scrollBottom', ['$timeout', function ($timeout) {
+  return {
+    scope: {
+      scrollBottom: "="
+    },
+    link: function ($scope, $element) {
+      $scope.$watchCollection('scrollBottom', function (newValue) {
+        if (newValue) {
+          $timeout(function(){
+            console.log($element[0].scrollHeight);
+            $element[0].scrollTop = $element[0].scrollHeight;
+          }, 0);
+        }
+      });
+    }
+  }
+}]);
