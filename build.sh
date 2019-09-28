@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 ls -l
-string=`ant test`
+chmod u+x gradlew
+string=`./gradlew clean build`
 if [[ $string == *"BUILD SUCCESSFUL"* ]]
 then
   echo "0";
